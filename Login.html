@@ -1,0 +1,242 @@
+<!-- This is an HTML page for user registration on the TGS website. -->
+<!DOCTYPE html>
+<html lang="en-US">
+   <head>
+
+      <!-- Page metadata -->
+      <meta charset="UTF-8">
+      <meta name="description" content="Register for TGS">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Login | TGS</title>
+   </head>
+   <style>
+      * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      }
+      
+      /* General styles */
+      body {
+      font-family: Noto;
+      }
+
+      h1 {
+      font-size: 2.5em;
+      text-align: center;
+      color: GoldenRod;
+      }
+
+      h2,
+      h4 {
+      font-size: 1.5em;
+      text-align: center;
+      color: GoldenRod;
+      }
+
+      h5 {
+      font-size: 1.0em;
+      text-align: Right;
+      color: GoldenRod;
+      }
+
+      /* Form styles */
+      form {
+      margin: auto;
+      max-width: 400px;
+      padding: 20px;
+      }
+
+      label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+      }
+
+      input[type="text"],
+      input[type="password"],
+      input[type="email"],
+      input[type="tel"] {
+      width: 100%;
+      padding: 4px 12px;
+      margin: 1px 0;
+      border-radius: 1px;
+      box-sizing: border-box;
+      border: none;
+      border-bottom: 1px solid GoldenRod;
+      margin-bottom: 12px;
+      }
+
+      /* Button styles */
+      button[type="submit"],
+      button[type="button"] {
+      background-color: GoldenRod;
+      color: white;
+      padding: 12px 18px;
+      margin: 6px 0;
+      border: none;
+      border-radius: 2px;
+      cursor: pointer;
+      margin-right: 8px;
+      }
+
+      button[type="submit"]:hover,
+      button[type="button"]:hover,
+      .cancelbtn:hover,
+      .registerbtn:hover {
+      background-color: #e8bd01;
+      }
+
+      .cancelbtn,
+      .registerbtn {
+      background-color: #ccc;
+      color: black;
+      }
+
+      /* Table styles */
+      table {
+      width: 100%;
+      }
+
+      /* Footer styles */
+      footer {
+      font-size: 1.0em;
+      text-align: center;
+      color: GoldenRod;
+      margin-top: 30px;
+      }
+
+      .error {
+      color: red;
+      font-size: 0.8em;
+      margin-top: 5px;
+      }
+   </style>
+   <body>
+
+      <!-- Page header -->
+      <header> <h1>TGS</h1> </header>
+      <hr>
+
+      <!-- Main content -->
+      <main>
+
+         <!-- Login form with input fields and buttons -->
+         <h2>Login</h2>
+         <form onsubmit="return validateForm()" action="submit-form.php">
+
+            <!-- Login method selection -->
+            <label for="loginMethod">Login using:</label>
+            <input type="radio" id="emailLogin" name="loginMethod" value="email" checked>
+            <label for="emailLogin">Email</label>
+            <input type="radio" id="phoneLogin" name="loginMethod" value="phone">
+            <label for="phoneLogin">Phone Number</label>
+
+            <!-- Email input section -->
+            <div id="emailLoginSection">
+               <label for="email">Email:</label>
+               <input type="email" id="email" name="email">
+            </div>
+
+            <!-- Phone number input section -->
+            <div id="phoneLoginSection" style="display:none;">
+               <label for="phoneNumber">Phone Number:</label>
+               <input type="tel" id="phoneNumber" name="phoneNumber" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+            </div>
+
+            <!-- Password input section -->
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password"><br>
+
+            <!-- Login and cancel buttons -->
+            <button type="submit" href="index.html">Login</button>
+            <a href="index.html" class="cancelbtn">Cancel</a>
+
+            <!-- Link to registration page and password recovery page -->
+            <h5>Don't Have an Account? <a href="Register.html" class="registerbtn">Create an Account</a></h5>
+            <h5> Forgot <a href="#">Password? </a></h5>
+         </form>
+      </main>
+
+      <!-- Page footer -->
+      <footer>
+         <!-- Navigation links -->
+         <a href="index.html">Home</a>
+         <a href="Login.html">Login</a>
+         <a href="Search.html">Search</a>
+         <a href="Menswear.html">Menswear</a>
+         <a href="Womenswear.html">Womenswear</a>
+         <a href="New-Arrivals.html">New Arrivals</a>
+         <a href="Campaign.html">Campaign</a>
+         <a href="Sale.html">Sale</a>
+         <a href="Aboutus.html">About Us</a>
+         <a href="Faq.html">FAQ</a>
+         <a href="Systempreference.html">System Preferences</a>
+
+         <!-- Copyright notice -->
+         <font align="center"> <p>© TGS 2023</p> </font>
+      </footer>
+
+      <!-- JavaScript for form validation -->
+      <script>
+         // Add event listeners for radio buttons when the page loads
+         window.addEventListener("load", function() {
+            var emailLogin = document.getElementById("emailLogin");
+            var phoneLogin = document.getElementById("phoneLogin");
+            var emailLoginSection = document.getElementById("emailLoginSection");
+            var phoneLoginSection = document.getElementById("phoneLoginSection");
+
+            emailLogin.addEventListener("change", function() {
+               if (emailLogin.checked) {
+                  emailLoginSection.style.display = "block";
+                  phoneLoginSection.style.display = "none";
+                  document.getElementById("phoneNumber").value = ""; // Clear phone number field
+               }
+            });
+
+            phoneLogin.addEventListener("change", function() {
+               if (phoneLogin.checked) {
+                  emailLoginSection.style.display = "none";
+                  phoneLoginSection.style.display = "block";
+                  document.getElementById("email").value = ""; // Clear email field
+               }
+            });
+         });
+
+         function validateForm() {
+            const email = document.getElementById("email").value;
+            const phoneNumber = document.getElementById("phoneNumber").value;
+            const password = document.getElementById("password").value;
+
+            // Check if email or phone number is selected
+            var emailLogin = document.getElementById("emailLogin");
+            var phoneLogin = document.getElementById("phoneLogin");
+            if (!emailLogin.checked && !phoneLogin.checked) {
+               alert("Please select a login method");
+               return false;
+            }
+
+            // Check if email is valid if selected
+            if (emailLogin.checked && (email === "" || !/\S+@\S+\.\S+/.test(email))) {
+               alert("Please enter a valid email address");
+               return false;
+            }
+
+            // Check if phone number is valid if selected
+            if (phoneLogin.checked && (phoneNumber === "" || !/^\(?[0-9]{3}\)?[-. ]?[0-9]{3}[-. ]?[0-9]{4}$/.test(phoneNumber))) {
+               alert("Please enter a valid phone number (XXX-XXX-XXXX)");
+               return false;
+            }
+
+            // Check if password is empty or not valid
+            if (password === "" || password.length < 6) {
+               alert("Password must be at least 6 characters long");
+               return false;
+            }
+
+            // If all validations pass, return true to submit the form
+            return true;
+         }
+      </script>
+   </body>
+</html>

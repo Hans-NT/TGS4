@@ -1,0 +1,334 @@
+<!-- This is an HTML page for user registration on the TGS website. -->
+<!DOCTYPE html>
+<html lang="en-US">
+   <head>
+     <!-- Page metadata -->
+     <meta charset="UTF-8">
+     <meta name="description" content="Register for TGS">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Checkout | TGS</title>
+   </head>
+   
+   <style>
+
+      /* Reset all margins, paddings, and box-sizing */
+      * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      }
+
+      /* General styles */
+      body {
+      font-family: Noto;
+      }
+      a {
+      text-decoration: none;
+      color: Black;
+      }
+      h1 {
+      font-size: 2.5em;
+      text-align: center;
+      color: GoldenRod;
+      }
+
+      h2,
+      h4 {
+      font-size: 1.5em;
+      text-align: center;
+      color: GoldenRod;
+      }
+
+      h5 {
+      font-size: 1.0em;
+      text-align: Right;
+      color: GoldenRod;
+      }
+
+      /* Form styles */
+      form {
+      margin: auto;
+      max-width: 400px;
+      padding: 20px;
+      }
+
+      /* Style table headers */
+      table th {
+      text-align: right;
+      padding-right: 10px;
+      }
+
+      input[type="text"],
+      input[type="password"],
+      input[type="email"],
+      input[type="tel"] {
+      width: 100%;
+      padding: 4px 12px;
+      margin: 1px 0;
+      border-radius: 1px;
+      box-sizing: border-box;
+      border: none;
+      border-bottom: 1px solid GoldenRod;
+      margin-bottom: 12px;
+      }
+
+      /* Button styles */
+      button[type="submit"],
+      button[type="button"] {
+      background-color: GoldenRod;
+      color: white;
+      padding: 12px 18px;
+      margin: 6px 0;
+      border: none;
+      border-radius: 2px;
+      cursor: pointer;
+      margin-right: 8px;
+      }
+
+
+      #Method {
+      display: block;
+      margin: 0 auto;
+   }
+
+      /* Footer styles */
+      footer {
+  background-color: AntiqueWhite;
+  color: Goldenrod;
+  padding: 20px;
+  text-align: center;
+}
+footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+footer li {
+  display: inline-block;
+  margin: 0 10px;
+}
+footer li a {
+  color: #fff;
+  text-decoration: none;
+}
+footer li a:hover {
+  text-decoration: underline;
+  
+}
+
+   </style>
+
+   <body>
+
+      <!-- Page header -->
+      <header> <h1>TGS</h1> </header>
+      <hr>
+   
+      <!-- Main section containing the Checkout form -->
+      <main>
+
+      <!-- Address -->
+      <section>
+         <form>
+
+            <!-- Address selection -->
+            <section>
+              <h2>Address</h2>
+              <label for="address">Select an address:</label>
+              <select id="address">
+                <option value="">Choose an option</option>
+                <option value="new">Enter New Address</option>
+              </select>
+            </section>
+
+            <!-- New Address form -->
+            <section id="new-address" style="display:none;">
+              <h2>New Address</h2>
+              <form>
+                <label for="street">Street:</label>
+                <input type="text" id="street" name="street" required>
+                <br>
+                <label for="city">City:</label>
+                <input type="text" id="city" name="city" required>
+                <br>
+                <label for="state">State:</label>
+                <input type="text" id="state" name="state" required>
+                <br>
+                <label for="zip">Zip Code:</label>
+                <input type="text" id="zip" name="zip" required>
+              </form>
+            </section>
+    
+
+            <!-- Payment type selection -->
+            <section>
+              <h2>Payment Method</h2>
+              <label for="payment-type">Select payment method:</label>
+              <select id="payment-type">
+                <option value="">Choose an option</option>
+                <option value="credit-card">Credit Card</option>
+                <option value="paypal">PayPal</option>
+                <option value="venmo">Venmo</option>
+                <option value="cash-app">Cash App</option>
+              </select>
+            </section>
+
+         <!-- Credit Card payment section -->
+         <section id="credit-card-payment" style="display:none;">
+
+            <h2>Credit Card</h2>
+            <form>
+               <label> Card Number:
+                  <input type="text" id="card-number" name="card-number" required />
+               </label>
+               <br />
+               <label> Name on Card:
+                  <input type="text" id="card-name" name="card-name" required />
+               </label>
+               <br />
+               <label> Expiration Date:
+                  <select name="card-expiry-month" id="card-expiry-month" required>
+                     <option value="">Month</option>
+                     <option value="01">January</option>
+                     <option value="02">February</option>
+                     <option value="03">March</option>
+                     <option value="04">April</option>
+                     <option value="05">May</option>
+                     <option value="06">June</option>
+                     <option value="07">July</option>
+                     <option value="08">August</option>
+                     <option value="09">September</option>
+                     <option value="10">October</option>
+                     <option value="11">November</option>
+                     <option value="12">December</option>
+                  </select>
+                  /
+                  <select name="card-expiry-year" id="card-expiry-year" required>
+                     <option value="">Year</option>
+                     <script>
+                        var year = new Date().getFullYear();
+                        for (var i = 0; i < 10; i++) {
+                           document.write(`<option value="${year}">${year}</option>`);
+                           year++;
+                        }
+                     </script>
+                  </select>
+               </label>
+               <br />
+               <label> CVV:
+                  <input type="text" id="card-cvv" name="card-cvv" required />
+               </label>
+               <br />
+               <button type="submit" >Checkout</button>
+            </form>
+         </section>
+
+               
+         <!-- PayPal payment section -->
+         <section id="paypal-payment" style="display:none;">
+            <h2>PayPal</h2>
+            <form>
+               <label for="paypal-username">Username:</label>
+               <input type="text" id="paypal-username" placeholder="Enter Username" name="paypal-username" required />
+               <br />
+               <label for="paypal-password">Password:</label>
+               <input type="password" id="paypal-password" placeholder="Enter Password" name="paypal-password" required />
+               <br />
+               <button type="submit" >Checkout</button>
+            </form>
+         </section>
+   
+         <!-- Venmo payment section -->
+         <section id="venmo-payment" style="display:none;">
+            <h2>Venmo</h2>
+            <form>
+               <label for="venmo-username">Username:</label>
+               <input type="text" id="venmo-username" placeholder="Enter Username" name="venmo-username" required />
+               <br />
+               <label for="venmo-password">Password:</label>
+               <input type="password" id="venmo-password" placeholder="Enter Password" name="venmo-password" required />
+               <br />
+               <button type="submit" >Checkout</button>
+            </form>
+         </section>
+
+         <!-- CashApp payment section -->
+         <section id="cashapp-payment" style="display:none;">
+            <h2>Cash App</h2>
+            <form>
+               <label for="cashapp-username">Username:</label>
+               <input type="text" id="cashapp-username" placeholder="Enter Username" name="cashapp-username" required />
+               <br />
+               <label for="cashapp-password">Password:</label>
+               <input type="password" id="cashapp-password" placeholder="Enter Password" name="cashapp-password" required />
+               <br />
+               <button type="submit" >Checkout</button>
+            </form>
+         </section>
+      </main>
+   
+      <!-- Page footer -->
+      <footer>
+         <!-- Navigation links -->
+         <a href="index.html">Home</a>
+         <a href="Login.html">Login</a>
+         <a href="Search.html">Search</a>
+         <a href="Campaign.html">Campaign</a>
+         <a href="Menswear.html">Menswear</a>
+         <a href="Womenswear.html">Womenswear</a>
+         <a href="New-Arrivals.html">New Arrivals</a>
+         <a href="Sale.html">Sale</a>
+         <a href="Aboutus.html">About Us</a>
+         <a href="Faq.html">FAQ</a>
+         <a href="Contact.html">Contact Us</a>
+         <a href="Systempreference.html">System Preferences</a>
+
+         <!-- Copyright notice -->
+         <font align="center"> <p>© TGS 2023</p> </font>
+      </footer>
+
+      <script>
+
+         const paymentTypeSelect = document.getElementById("payment-type");
+        const creditCardPayment = document.getElementById("credit-card-payment");
+        const paypalPayment = document.getElementById("paypal-payment");
+        const venmoPayment = document.getElementById("venmo-payment");
+        const cashAppPayment = document.getElementById("cashapp-payment");
+        const addressSelect = document.getElementById("address");
+        const newAddressDiv = document.getElementById("new-address");
+
+         paymentTypeSelect.addEventListener("change", function() {
+         if (paymentTypeSelect.value === "credit-card") {
+         creditCardPayment.style.display = "block";
+         paypalPayment.style.display = "none";
+         venmoPayment.style.display = "none";
+         cashAppPayment.style.display = "none";
+         } else if (paymentTypeSelect.value === "paypal") {
+         creditCardPayment.style.display = "none";
+         paypalPayment.style.display = "block";
+         venmoPayment.style.display = "none";
+         cashAppPayment.style.display = "none";
+         } else if (paymentTypeSelect.value === "venmo") {
+         creditCardPayment.style.display = "none";
+         paypalPayment.style.display = "none";
+         venmoPayment.style.display = "block";
+         cashAppPayment.style.display = "none";
+         } else if (paymentTypeSelect.value === "cashapp") {
+         creditCardPayment.style.display = "none";
+         paypalPayment.style.display = "none";
+         venmoPayment.style.display = "none";
+         cashAppPayment.style.display = "block";
+         }
+         });
+
+         // Show/hide new address fields when "Enter New Address" option is selected
+         addressSelect.addEventListener("change", function() {
+            if (addressSelect.value == "new") {
+               newAddressDiv.style.display = "block";
+            } else {
+               newAddressDiv.style.display = "none";
+            }
+         });
+      </script>
+   </body>
+</html>
